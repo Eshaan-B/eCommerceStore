@@ -8,17 +8,24 @@ exports.getAddProduct = (req, res, next) => {
 };
 
 exports.postAddProduct = (req, res, next) => {
-  const product = new Product(req.body.title);
+  console.log(
+    req.body.title,
+    req.body.imageUrl,
+    req.body.description,
+    req.body.price
+  );
+  const { title, imageUrl, description, price } = req.body;
+  const product = new Product(title, imageUrl, description, price);
   product.save();
   res.redirect("/");
 };
 
 exports.getProducts = (req, res, next) => {
-  const products = Product.fetchAll(products => {
+  Product.fetchAll((products) => {
     res.render("shop/product-list", {
-      pageTitle: "Shop",
       prods: products,
-      path: "/",
+      pageTitle: "Product List",
+      path: "/admin/products",
     });
   });
 };
