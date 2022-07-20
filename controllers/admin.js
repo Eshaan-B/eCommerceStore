@@ -8,12 +8,6 @@ exports.getAddProduct = (req, res, next) => {
 };
 
 exports.postAddProduct = (req, res, next) => {
-  console.log(
-    req.body.title,
-    req.body.imageUrl,
-    req.body.description,
-    req.body.price
-  );
   const { title, imageUrl, description, price } = req.body;
   const product = new Product(title, imageUrl, description, price);
   product.save();
@@ -22,7 +16,7 @@ exports.postAddProduct = (req, res, next) => {
 
 exports.getProducts = (req, res, next) => {
   Product.fetchAll((products) => {
-    res.render("shop/product-list", {
+    res.render("admin/products", {
       prods: products,
       pageTitle: "Product List",
       path: "/admin/products",
