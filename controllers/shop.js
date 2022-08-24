@@ -40,13 +40,13 @@ exports.getCart = (req, res, next) => {
 };
 
 exports.postCart = (req, res, next) => {
-  console.log(req.body.productId);
-  Cart.addProduct(req.body.productId);
+  console.log(req.body.prodId);
+  Cart.addProduct(req.body.productId, req.body.productPrice);
   res.redirect("/cart");
 };
 
 exports.getCheckout = (req, res, next) => {
-  res.render("sh  op/checkout", {
+  res.render("shop/checkout", {
     pageTitle: "Checkout",
     path: "/checkout",
   });
